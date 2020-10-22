@@ -1,22 +1,43 @@
 import React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import { Box, createStyles, makeStyles,Slide} from "@material-ui/core"
+import { Cards } from "../components/cards"
 
-const IndexPage = () => (
+const useStyles = makeStyles(()=>createStyles({
+    title:{
+      fontFamily : "myfont",
+      fontWeight : "300",
+      fontSize : "45px",
+      letterSpacing : "0.2px",
+    },
+    subtitle :{
+      fontWeight : "300",
+      fontFamily : "myfont",
+      fontSize : "40px",
+      letterSpacing : "0.2px",
+      opacity : 0.3
+    },
+    container:{
+      padding : "80px"
+    }
+}))
+
+const IndexPage = () =>{
+  const classes= useStyles()
+  return (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    <Box display="flex" justifyContent="center" maxWidth="1200px">
+      <Slide direction="left" in={true} timeout = {400} mountOnEnter unmountOnExit>
+      <Box className={classes.container} textAlign="left">
+        <h4 className={classes.title}>I'm going on an adventure!</h4>
+        <h4 className={classes.subtitle}>Find essential information for your next journey</h4>
+      </Box>
+      </Slide>
+    </Box>
+    <Cards/>
   </Layout>
 )
-
-export default IndexPage
+}
+export default IndexPage;
